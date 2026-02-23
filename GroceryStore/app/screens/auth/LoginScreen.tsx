@@ -31,7 +31,7 @@ export const LoginScreen = () => {
 
         <TouchableOpacity 
           style={styles.button} 
-          onPress={() => navigation.navigate('Onboarding')} // После входа тоже показываем велком скрин (по задаче)
+          onPress={() => navigation.navigate('Onboarding')} 
         >
           <Text style={styles.buttonText}>Войти</Text>
         </TouchableOpacity>
