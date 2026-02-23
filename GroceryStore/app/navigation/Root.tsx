@@ -4,18 +4,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Feather } from '@expo/vector-icons';
 import { View, Text } from 'react-native';
 
-// =================================================
-// 1. ИМПОРТЫ (Убедись, что все файлы созданы)
-// =================================================
+import { StartScreen } from '../screens/auth/StartScreen';
+import { RegisterScreen } from '../screens/auth/RegisterScreen';
+import { SmsCodeScreen } from '../screens/auth/SmsCodeScreen';
+import { LoginScreen } from '../screens/auth/LoginScreen';
+import { OnboardingScreen } from '../screens/auth/OnboardingScreen';
 
-// --- Экраны Авторизации (Вход, Регистрация) ---
-import { StartScreen } from '../screens/auth/StartScreen';     // Зеленый экран
-import { RegisterScreen } from '../screens/auth/RegisterScreen'; // Ввод телефона
-import { SmsCodeScreen } from '../screens/auth/SmsCodeScreen';   // СМС код
-import { LoginScreen } from '../screens/auth/LoginScreen';       // Логин
-import { OnboardingScreen } from '../screens/auth/OnboardingScreen'; // Добро пожаловать
-
-// --- Экраны Главной Ленты ---
 import { FeedScreen } from '../screens/home/FeedScreen';
 import { UserProfileScreen } from '../screens/home/UserProfileScreen';
 import { ShopDetailsScreen } from '../screens/home/ShopDetailsScreen';
@@ -25,28 +19,20 @@ import { SearchMainScreen } from '../screens/search/SearchMainScreen';
 import { CategoriesListScreen } from '../screens/search/CategoriesListScreen';
 import { SearchInputScreen } from '../screens/search/SearchInputScreen';
 
-// --- Экраны Загрузки (Upload) ---
 import { CreatePostScreen } from '../screens/upload/CreatePostScreen';
 import { SelectProductScreen } from '../screens/upload/SelectProductScreen';
 import { SelectStoreScreen } from '../screens/upload/SelectStoreScreen';
 import { CameraScreen } from '../screens/upload/CameraScreen';
 
-// --- Экраны Профиля (Личный кабинет) ---
 import { ProfileScreen } from '../screens/profile/ProfileScreen';
 import { NotificationsScreen } from '../screens/profile/NotificationsScreen';
 import { SettingsScreen } from '../screens/profile/SettingsScreen';
 
-
-// =================================================
-// 2. НАСТРОЙКА СТЕКОВ (Группы экранов)
-// =================================================
-
-// --- СТЕК АВТОРИЗАЦИИ (Самый первый) ---
 const AuthStack = createNativeStackNavigator();
 function AuthStackScreen() {
   return (
     <AuthStack.Navigator 
-      initialRouteName="Start" // <--- РЕШЕНИЕ ПРОБЛЕМЫ 2: Всегда начинаем с StartScreen
+      initialRouteName="Start"
       screenOptions={{ headerShown: false }}
     >
       <AuthStack.Screen name="Start" component={StartScreen} />
@@ -58,7 +44,6 @@ function AuthStackScreen() {
   );
 }
 
-// --- СТЕК ГЛАВНОЙ (Лента) ---
 const HomeStack = createNativeStackNavigator();
 function HomeStackScreen() {
   return (
@@ -75,7 +60,6 @@ function HomeStackScreen() {
   );
 }
 
-// --- СТЕК ЗАГРУЗКИ (Плюс) ---
 const UploadStack = createNativeStackNavigator();
 function UploadStackScreen() {
   return (
@@ -100,12 +84,10 @@ function UploadStackScreen() {
   );
 }
 
-// --- СТЕК ПРОФИЛЯ (Справа) ---
 const ProfileStack = createNativeStackNavigator();
 function ProfileStackScreen() {
   return (
     <ProfileStack.Navigator screenOptions={{ headerShown: false }}>
-      {/* РЕШЕНИЕ ПРОБЛЕМЫ 1: Главный экран здесь - это профиль пользователя, а не вход */}
       <ProfileStack.Screen name="ProfileMain" component={ProfileScreen} />
       <ProfileStack.Screen name="Notifications" component={NotificationsScreen} />
       <ProfileStack.Screen 
@@ -117,9 +99,6 @@ function ProfileStackScreen() {
   );
 }
 
-// =================================================
-// 3. НИЖНИЙ НАВИГАТОР (ТАБЫ)
-// =================================================
 const Tab = createBottomTabNavigator();
 function MainTabNavigator() {
   return (
@@ -146,21 +125,15 @@ function MainTabNavigator() {
   );
 }
 
-// =================================================
-// 4. ГЛАВНЫЙ КОРНЕВОЙ НАВИГАТОР
-// =================================================
 const RootStack = createNativeStackNavigator();
 
 export default function RootNavigator() {
   return (
     <RootStack.Navigator 
       screenOptions={{ headerShown: false }} 
-      initialRouteName="AuthStack" // <--- ВАЖНО: Приложение всегда стартует с AuthStack
+      initialRouteName="AuthStack"
     >
-      {/* 1. Сначала работает AuthStack (Старт -> Вход -> Онбординг) */}
       <RootStack.Screen name="AuthStack" component={AuthStackScreen} />
-      
-      {/* 2. Когда в OnboardingScreen сделаем reset, попадаем сюда (Главное приложение) */}
       <RootStack.Screen name="MainTab" component={MainTabNavigator} />
     </RootStack.Navigator>
   );

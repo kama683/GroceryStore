@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Image } from 'r
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-// Картинки для слайдера (заглушки)
 const SLIDES = [
   { id: 1, image: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=800&auto=format&fit=crop', title: 'Свежие фрукты' },
   { id: 2, image: 'https://images.unsplash.com/photo-1597362925123-77861d3fbac7?q=80&w=800&auto=format&fit=crop', title: 'Овощи с грядки' },
@@ -18,13 +17,11 @@ export const OnboardingScreen = () => {
     if (step < SLIDES.length - 1) {
       setStep(step + 1);
     } else {
-      // Это был последний слайд, переходим в главное приложение
       finishOnboarding();
     }
   };
 
   const finishOnboarding = () => {
-    // Сбрасываем стек навигации и ставим MainTab как корень
     navigation.reset({
       index: 0,
       routes: [{ name: 'MainTab' }],
@@ -46,7 +43,6 @@ export const OnboardingScreen = () => {
           <Image source={{ uri: SLIDES[step].image }} style={styles.image} resizeMode="cover" />
         </View>
         
-        {/* Индикаторы (точки) */}
         <View style={styles.dotsContainer}>
           {SLIDES.map((_, index) => (
             <View 

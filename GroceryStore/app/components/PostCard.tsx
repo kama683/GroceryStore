@@ -1,12 +1,11 @@
-// src/components/PostCard.tsx
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
-import { Ionicons, Feather } from '@expo/vector-icons'; // Используем стандартные иконки
+import { Ionicons, Feather } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
 interface PostCardProps {
-  data: any; // В реальном проекте здесь будет интерфейс Post
+  data: any;
   onPress: () => void;
   onUserPress?: () => void;
   onShopPress?: () => void;
@@ -15,7 +14,6 @@ interface PostCardProps {
 export const PostCard = ({ data, onPress, onUserPress, onShopPress }: PostCardProps) => {
   return (
     <View style={styles.cardContainer}>
-      {/* 1. Header: Avatar + Name — клик ведёт на профиль */}
       <View style={styles.header}>
         <TouchableOpacity 
           style={styles.userInfo} 
@@ -34,17 +32,14 @@ export const PostCard = ({ data, onPress, onUserPress, onShopPress }: PostCardPr
         </TouchableOpacity>
       </View>
 
-      {/* 2. Content Text */}
       <Text style={styles.contentText} numberOfLines={2}>
         {data.content}
       </Text>
 
-      {/* 3. Main Image */}
       <TouchableOpacity onPress={onPress} activeOpacity={0.9}>
         <Image source={{ uri: data.image }} style={styles.productImage} />
       </TouchableOpacity>
 
-      {/* 4. Product Info Block */}
       <View style={styles.detailsContainer}>
         <View style={styles.rowBetween}>
           <Text style={styles.productName}>{data.product.name}</Text>
@@ -62,7 +57,6 @@ export const PostCard = ({ data, onPress, onUserPress, onShopPress }: PostCardPr
         </TouchableOpacity>
       </View>
 
-      {/* 5. Footer Stats */}
       <View style={styles.footer}>
         <View style={styles.statItem}>
           <Ionicons name="chatbubble-outline" size={20} color="#666" />
@@ -80,7 +74,6 @@ export const PostCard = ({ data, onPress, onUserPress, onShopPress }: PostCardPr
         </View>
 
         <View style={[styles.statItem, { marginLeft: 'auto' }]}>
-           {/* Иконка галочки в квадрате как на скрине */}
           <Feather name="check-square" size={20} color="#666" /> 
           <Text style={styles.statText}>{data.stats.views}</Text>
         </View>
@@ -94,7 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginBottom: 10,
     padding: 16,
-    borderBottomWidth: 1, // Легкое разделение постов
+    borderBottomWidth: 1,
     borderBottomColor: '#f0f0f0',
   },
   header: {
@@ -130,7 +123,7 @@ const styles = StyleSheet.create({
   productImage: {
     width: '100%',
     height: 200,
-    borderRadius: 12, // Скругление как на макете
+    borderRadius: 12,
     marginBottom: 12,
   },
   detailsContainer: {
@@ -153,7 +146,7 @@ const styles = StyleSheet.create({
   currency: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#2ECC71', // Фирменный зеленый цвет цены
+    color: '#2ECC71',
   },
   priceValue: {
     fontSize: 20,
@@ -173,7 +166,7 @@ const styles = StyleSheet.create({
   },
   shopName: {
     fontSize: 14,
-    color: '#2ECC71', // Зеленый цвет магазина
+    color: '#2ECC71',
     marginTop: 8,
     fontWeight: '500',
   },

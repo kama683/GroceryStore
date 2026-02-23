@@ -1,6 +1,3 @@
-// src/data/mockData.ts
-
-// Пользователи
 const createPost = (id: string, image: string, user: any, shop: any, productName: string) => ({
   id, image,
   content: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia',
@@ -15,7 +12,7 @@ export const MOCK_USER_JENNY = {
   role: 'Активный пользователь',
   stats: { posts: 3, confirmations: 10 },
   timeAgo: '3 мин назад',
-  posts: [] as any[], // заполним после определения MOCK_SHOP_GALMART
+  posts: [] as any[],
 };
 
 export const MOCK_USER_JANE = {
@@ -27,7 +24,6 @@ export const MOCK_USER_JANE = {
   timeAgo: '3 мин назад',
 };
 
-// Магазины
 export const MOCK_SHOP_GALMART = {
   id: 's_galmart',
   name: 'Galmart Dostyk Plaza',
@@ -58,14 +54,12 @@ export const MOCK_SHOP_AYLIN = {
   ]
 };
 
-// Заполняем посты Jenny после определения магазина
 MOCK_USER_JENNY.posts = [
   createPost('j1', 'https://images.unsplash.com/photo-1464965911861-746a04b4b0a6?q=80&w=600&auto=format&fit=crop', MOCK_USER_JENNY, MOCK_SHOP_GALMART, 'Клубника'),
   createPost('j2', 'https://images.unsplash.com/photo-1569866854580-e8f08149890a?q=80&w=600&auto=format&fit=crop', MOCK_USER_JENNY, MOCK_SHOP_GALMART, 'Макароны'),
   createPost('j3', 'https://images.unsplash.com/photo-1598511726623-d08316df5f8f?q=80&w=600&auto=format&fit=crop', MOCK_USER_JENNY, MOCK_SHOP_GALMART, 'Авокадо'),
 ];
 
-// Главная лента (Скрин 1)
 export const MOCK_FEED = [
   {
     id: '1',
@@ -78,7 +72,6 @@ export const MOCK_FEED = [
   },
 ];
 
-// Посты для профиля Jane Cooper (Скрин 2 → Скрин 5)
 const createUserPost = (id: string, image: string, user: typeof MOCK_USER_JANE, shop: typeof MOCK_SHOP_AYLIN, productName: string) => ({
   id,
   image,
@@ -98,13 +91,11 @@ export const MOCK_USER = {
   ]
 };
 
-// Магазин по умолчанию (для обратной совместимости)
 export const MOCK_SHOP = MOCK_SHOP_AYLIN;
 
-// --- Поиск по ID (для навигации — передаём только ID, не объекты с циклическими ссылками) ---
 const USERS_MAP: Record<string, any> = {
   [MOCK_USER_JENNY.id]: MOCK_USER_JENNY,
-  [MOCK_USER_JANE.id]: MOCK_USER, // MOCK_USER содержит posts
+  [MOCK_USER_JANE.id]: MOCK_USER,
 };
 const SHOPS_MAP: Record<string, any> = {
   [MOCK_SHOP_GALMART.id]: MOCK_SHOP_GALMART,
@@ -133,7 +124,6 @@ export function getProductById(shopId: string | undefined, productId: string | u
   return found || MOCK_SHOP.products?.[0];
 }
 
-// --- Данные для поиска ---
 export const SEARCH_SUGGESTIONS = ['Фрукты', 'Яблоки', 'Крупа гречневая'];
 
 export const SEARCH_GRID_ITEMS = [

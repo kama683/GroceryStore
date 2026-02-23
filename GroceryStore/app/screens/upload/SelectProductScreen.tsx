@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 
   grid: { paddingHorizontal: 20, flexDirection: 'row', flexWrap: 'wrap', paddingBottom: 100 },
   card: { 
-    width: '48%', // Две колонки
+    width: '48%',
     height: 100, 
     backgroundColor: '#FFF', 
     borderRadius: 16, 
